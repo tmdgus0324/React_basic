@@ -9,9 +9,12 @@ import Clock from './chapter_04/Clock';
 import CommentList from './chapter_05/CommentList';
 import NotificationList from './chapter_06/NotificationList';
 import Accommodate from './chapter_07/Accommodate';
+import ConfirmButton from './chapter_08/ConfirmButton';
+import ConfirmButton2 from './chapter_08/ConfirmButton2';
 
 
-/* chaper 3 */
+
+/* chapter 3 */
 /*
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -22,7 +25,7 @@ root.render(
 );
 */
 
-/* chaper 4 */ 
+/* chapter 4 */ 
 /*
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -36,7 +39,7 @@ setInterval(() => {
 }, 1000);
 */
 
-/* chaper 5 */ 
+/* chapter 5 */ 
 /*
 ReactDOM.render(
   <React.StrictMode>
@@ -46,7 +49,7 @@ ReactDOM.render(
 );
 */
 
-/* chaper 6 -> 17버전으로 다운 */ 
+/* chapter 6 -> 17버전으로 다운 */ 
 /*
 ReactDOM.render(
   <React.StrictMode>
@@ -56,14 +59,26 @@ ReactDOM.render(
 );
 */
 
-/* chaper 7 */
-
+/* chapter 7 */
+/*
 ReactDOM.render(
   <React.StrictMode>
     <Accommodate />
   </React.StrictMode>,
   document.getElementById('root')
 );
+*/
+
+/* chapter 8 */
+
+ReactDOM.render(
+  <React.StrictMode>
+    <ConfirmButton2 />
+  </React.StrictMode>,
+  document.getElementById('root')
+);
+
+
 
 
 
