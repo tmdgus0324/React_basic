@@ -64,8 +64,34 @@
         </button>
         -->
 
+        <!--
+        Truthy true는 아니지만 true로 여겨지는 값
+        Falsy false는 아니지만 false로 여겨니는 값
 
-        
+        // truthy
+        true
+        {} (empty object)
+        [] (empty array)
+        42 (number, not zero)
+        "0", "false" (string, not empty)
+
+        // falsy
+        false
+        0, -0 (zero, minus zero)
+        0n (BigInt zero)
+        '', "", `` (empty string)
+        null
+        undefined
+        NaN (not a number)
+
+        조건부 랜더링
+        Inline Conditions
+            true && expression -> expression
+            false && expression -> false
+        Component 랜더링 x -> null 리턴    
+
+        -->
+
 
     </body>
 </html>

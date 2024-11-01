@@ -11,7 +11,8 @@ import NotificationList from './chapter_06/NotificationList';
 import Accommodate from './chapter_07/Accommodate';
 import ConfirmButton from './chapter_08/ConfirmButton';
 import ConfirmButton2 from './chapter_08/ConfirmButton2';
-
+import Toolbar from './chapter_09/Toorbar';
+import LandingPage from './chapter_09/LanginPage';
 
 
 /* chapter 3 */
@@ -70,10 +71,19 @@ ReactDOM.render(
 */
 
 /* chapter 8 */
-
+/*
 ReactDOM.render(
   <React.StrictMode>
     <ConfirmButton2 />
+  </React.StrictMode>,
+  document.getElementById('root')
+);
+*/
+
+/* chapter 9 */
+ReactDOM.render(
+  <React.StrictMode>
+    <LandingPage />
   </React.StrictMode>,
   document.getElementById('root')
 );
