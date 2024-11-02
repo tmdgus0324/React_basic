@@ -13,6 +13,7 @@ import ConfirmButton from './chapter_08/ConfirmButton';
 import ConfirmButton2 from './chapter_08/ConfirmButton2';
 import Toolbar from './chapter_09/Toorbar';
 import LandingPage from './chapter_09/LanginPage';
+import AttendanceBook from './chapter_10/AttendanceBook';
 
 
 /* chapter 3 */
@@ -81,14 +82,23 @@ ReactDOM.render(
 */
 
 /* chapter 9 */
+/*
 ReactDOM.render(
   <React.StrictMode>
     <LandingPage />
   </React.StrictMode>,
   document.getElementById('root')
 );
+*/
 
+/* chapter 10 */
 
+ReactDOM.render(
+  <React.StrictMode>
+    <AttendanceBook />
+  </React.StrictMode>,
+  document.getElementById('root')
+);
 
 
 
