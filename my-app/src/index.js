@@ -15,6 +15,8 @@ import Toolbar from './chapter_09/Toorbar';
 import LandingPage from './chapter_09/LanginPage';
 import AttendanceBook from './chapter_10/AttendanceBook';
 import SignUp from './chapter_11/SignUp';
+import TemperatureInput from './chapter_12/TemperatureInput';
+import Calculator from './chapter_12/Calculator';
 
 
 /* chapter 3 */
@@ -103,13 +105,25 @@ ReactDOM.render(
 */
 
 /* chapter 11 */
-
+/*
 ReactDOM.render(
   <React.StrictMode>
     <SignUp />
   </React.StrictMode>,
   document.getElementById('root')
 );
+*/
+
+/* chapter 11 */
+
+ReactDOM.render(
+  <React.StrictMode>
+    <Calculator />
+  </React.StrictMode>,
+  document.getElementById('root')
+);
+
+
 
 
 
