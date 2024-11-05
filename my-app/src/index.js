@@ -17,6 +17,7 @@ import AttendanceBook from './chapter_10/AttendanceBook';
 import SignUp from './chapter_11/SignUp';
 import TemperatureInput from './chapter_12/TemperatureInput';
 import Calculator from './chapter_12/Calculator';
+import ProfileCard from './chapter_13/ProfileCard';
 
 
 /* chapter 3 */
@@ -114,16 +115,24 @@ ReactDOM.render(
 );
 */
 
-/* chapter 11 */
-
+/* chapter 12 */
+/*
 ReactDOM.render(
   <React.StrictMode>
     <Calculator />
   </React.StrictMode>,
   document.getElementById('root')
 );
+*/
 
+/* chapter 13 */
 
+ReactDOM.render(
+  <React.StrictMode>
+    <ProfileCard />
+  </React.StrictMode>,
+  document.getElementById('root')
+);
 
 
 
