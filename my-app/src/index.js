@@ -19,6 +19,7 @@ import TemperatureInput from './chapter_12/TemperatureInput';
 import Calculator from './chapter_12/Calculator';
 import ProfileCard from './chapter_13/ProfileCard';
 import DarkOrLight from './chapter_14/DarkOrLight';
+import Blocks from './chapter_15/Blocks';
 
 
 /* chapter 3 */
@@ -137,13 +138,24 @@ ReactDOM.render(
 */
 
 /* chapter 14 */
-
+/*
 ReactDOM.render(
   <React.StrictMode>
     <DarkOrLight />
   </React.StrictMode>,
   document.getElementById('root')
 );
+*/
+
+/* chapter 15 */
+
+ReactDOM.render(
+  <React.StrictMode>
+    <Blocks />
+  </React.StrictMode>,
+  document.getElementById('root')
+);
+
 
 
 // If you want to start measuring performance in your app, pass a function

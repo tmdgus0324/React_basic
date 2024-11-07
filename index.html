@@ -139,6 +139,68 @@
             (2) Context.Provider - object.is 방식으로 판단
         -->
 
+        <!--
+        ch16
+        (1) CSS :selector, style
+        
+        selector
+        h1{color: green; font-size: 16px;}
+           property   value
+
+            Element selector h1{}
+            ID selector : #{}
+            Class selector : .{}
+            Universal selector : ex) *{}
+            Grouping selector : ex) h1,h2,p{}
+            Element의 상태와 관련된 selector : hover, active, focus, cheched, first-chile, last-child
+
+        (2) 레이아웃과 관련된 속성
+        
+        div{ display: none; }
+            none : 화면숨김, block: 블록단위로 배치, inline: element를 라인안에 넣는것, flex: 블록레벨
+
+        visibility : visible, hidden
+
+        position : div{position: static;}
+            static: 원래위치, fixed: window 상대적, relative: 상대적으로, absolute: 첫번째상위element 기준
+
+        가로, 세로길이 속성 : div{ width: auto | value; }...
+
+        flexbox
+                        flex container
+            flex item     flex item     flex item
+
+            div{
+                display: flex;
+                flex-position
+            }
+            
+            flex_direction : row(가로 왼오), column(세로 위아래), row-reverse(가로 오왼), column-reverse(세로 아래위)
+
+            align-items : stretch(컨테이너 가득), flex-start, center, flex-end, baseline
+            
+            justify-content : flex-start(main axis 시작), center(중앙으로), flex-end, space-between, space-around
+
+        (3) font와 관련된 속성
+
+        font-family : {font-family: Arial, Verdana;} Arial없으면 Verdana로
+
+        px(pixel), em, rem, vw(viewpoint기준)
+
+        font-weight
+
+        font-style : normal, italic(기울인 글자), oblique(글자를 기울인것)
+
+        background-color
+
+        border(테두리)
+
+
+        (4) styled-components 
+        
+        tagged template literal : `` 대체가능한 expression을 쓴다.
+    
+    -->
 
     </body>
 </html>
