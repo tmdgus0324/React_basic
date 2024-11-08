@@ -128,14 +128,14 @@ ReactDOM.render(
 */
 
 /* chapter 13 */
-/*
+
 ReactDOM.render(
   <React.StrictMode>
     <ProfileCard />
   </React.StrictMode>,
   document.getElementById('root')
 );
-*/
+
 
 /* chapter 14 */
 /*
@@ -148,14 +148,14 @@ ReactDOM.render(
 */
 
 /* chapter 15 */
-
+/*
 ReactDOM.render(
   <React.StrictMode>
     <Blocks />
   </React.StrictMode>,
   document.getElementById('root')
 );
-
+*/
 
 
 // If you want to start measuring performance in your app, pass a function

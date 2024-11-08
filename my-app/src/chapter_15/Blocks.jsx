@@ -1,3 +1,4 @@
+/*
 import styled from "styled-components";
 
 const Wrapper = styled.div`
@@ -56,3 +57,5 @@ function Blocks(props) {
 }
 
 export default Blocks;
+
+*/
