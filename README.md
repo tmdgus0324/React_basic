@@ -1,19 +1,17 @@
 React_basic
 =============
 
-React 기초공부
--------------
 *****
-# 참고사항
-## 0. 개발환경설정
-Node.js, npm 설치하기
+## 참고사항
+### 0. 개발환경설정
+Node.js, npm 설치하기, VS Code 설치, 소스트리 설치(github연동)
 
-## 1. terminal 이용할 때 아래 오류가 나올 수 있다.
+### 1. terminal 이용할 때 아래 오류가 나올 수 있다.
 npm : 이 시스템에서 스크립트를 실행할 수 없으므로 C:\Program Files\nodejs\npm.ps1 파일을 로드할 수 없습니다.
 자세한 내용은 about_Execution_Policies(https://go.microsoft.com/fwlink/?LinkID=135170)를 참조하십시오.
 -> 권한문제 -> powershell 관리자모드 -> Set-ExecutionPolicy RemoteSigned 권한변경하고 사용한다.
 
-## 2. React는 버전별로 차이가 있다. 17버전 설치하기
+### 2. React는 버전별로 차이가 있다. 17버전 설치하기
 npm uninstall react react-dom
 -> npm install react@17.0.2 react-dom@17.0.2
 -> index.js 형태변경
@@ -31,20 +29,20 @@ npm uninstall react react-dom
     document.getElementById('root')
     );
 
-## 3. npm install --save styled-components 설치시 에러나타날 때
+### 3. npm install --save styled-components 설치시 에러나타날 때
 --legacy-peer-deps : 기존 라이브러리 버전 무시하고 설치 -> 17버전 기준 추가하여 설치 시 정상TEST 가능
 --force : package.json 또는 package-lock.json 파일에 여러가지 의존 버전들을 추가하면서 설치
 
 *****
-# 기초확인
-## 1. HTML
+## 기초확인
+### 1. HTML
     SPA : 하나의 페이지만 구성하는 application
     기존 : 각자의 html 파일이 있다.
     해당 페이지 접속할 때 body페이지에 동적으로 content들을 채워넣는다.
 
-## 2. CSS -> 15강 참고
+### 2. CSS -> 15강 참고
 
-## 3. JavaScript
+### 3. JavaScript
     ECMAScript(ES6 버전을 표준으로 함)
     html은 뼈대를 구성 
     JavaScript는 런타임에 코드가 실행되고 해석된다.
@@ -89,9 +87,30 @@ npm uninstall react react-dom
             }
 
 *****
-# Chapter별 정리
+## 섹션별 정리
 
-## ch4
+### 섹션2
+React : A JavaScript Library for building user interfaces(사용자 인터페이스를 위한 자바스크립트 라이브러리)
+사용자 인터페이스(User Interface, UI) : 사용자와 컴퓨터 프로그램 상호작용 위한 입력과 출력을 제어해주는 것
+UI라이브러리 : React는 대표적인 UI라이브러리 이다.(ex: React / NGULARJS, Vue.js 는 프레임워크)
+라이브러리는 개발자가 필요한 부분만 가져다가 쓰는 형태, 즉 라이브러리는 개발자가 제어권한을 프레임워크는 프레임워크에 제어권한이 있다.
+
+#### React 장점
+빠른 업데이트 & 렌더링 속도
+Virtual DOM : 웹페이지를 담고 있는 하나의 객체
+Component-Based : 컴포넌트들을 모아서 개발
+재사용성(Reusability) : 의존성 문제, 다른 호환성 문제등이 생길 수 있음 / 다른 모듈 의존성을 낮춰서 개발필요
+React 장점 : 개발기간 단축, 유지보수 용이(버그 찾기 쉬움), Meta
+React Native : 모바일 앱개발 용이
+
+#### React 단점
+Virtual DOM, JSX, Component, State, Props 학습량이 많다.
+계속 달라진다.
+높은 상태관리 복잡도, State관리가 복잡하다.(외부 상태관리 라이브러리를 사용하는 경우가 많다.)
+
+
+
+### ch4
 JSX : 자바스크립트 확장문법 xml,html
 
 장점 : 
@@ -103,7 +122,7 @@ JSX : 자바스크립트 확장문법 xml,html
 
 
 
-## ch8
+### ch8
 useEffect(() => {
     // 컴포넌트가 마운트 된 이후,
     // 의존성 배열에 있는 변수들 중 하나라도 값이 변경되었을 때 실행됨
@@ -127,7 +146,7 @@ Custom Hook : use로 시작해야 한다.
 
 
 
-## ch9
+### ch9
 Event
 버튼 클릭 이벤트, 이벤트를 핸들링...
 
@@ -163,7 +182,7 @@ Component 랜더링 x -> null 리턴
 
 
 
-## ch10
+### ch10
 List, Array, Key(고유값)
 
 map() : 다수의 Component 랜더링 가능
@@ -171,20 +190,20 @@ map() : 다수의 Component 랜더링 가능
 
 
 
-## ch11
+### ch11
 html -> input, textarea, select태그 등 각각의 state로 관리
 Controlled Components -> 모든데이터 state에서, 변경할때 setState함수를 사용, 함수 컴포넌트에서는 useState hook사용
        
 
 
-## ch13
+### ch13
 Shared State : State에 있는 데이터를 여러개의 하위 컴포넌트에서 공통으로 사용하는 경우
 
 하위 컴포넌트에서 State공유하기
 
 
 
-## ch14
+### ch14
 (1) Composition(구성) : 합성
     Containment - contain의 의미, 하위 컴포넌트 포함하는 형태 합성방법
                     Sidebar나 Dialog같은 Box형태의 컴포넌트는 자신의 하위 컴포넌트를 미리 알 수 없음
@@ -200,7 +219,7 @@ Shared State : State에 있는 데이터를 여러개의 하위 컴포넌트에�
 
 
 
-## ch15
+### ch15
 Context : 기존 props통한 데이터 전달방법 대신 데이터 필요로하는 컴포넌트에 곧바로 전달, 단계x, 디버깅 좋음
     로그인 여부, 로그인 정보, UI테마, 현재 언어 등...
     재사용성이 떨어진다.
@@ -211,7 +230,7 @@ Context API
 
 
 
-ch16
+### ch16
 (1) CSS :selector, style
 
 selector
