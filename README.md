@@ -89,10 +89,12 @@ npm uninstall react react-dom
 *****
 ## 섹션별 정리
 
-### 섹션2
-React : A JavaScript Library for building user interfaces(사용자 인터페이스를 위한 자바스크립트 라이브러리)
-사용자 인터페이스(User Interface, UI) : 사용자와 컴퓨터 프로그램 상호작용 위한 입력과 출력을 제어해주는 것
-UI라이브러리 : React는 대표적인 UI라이브러리 이다.(ex: React / NGULARJS, Vue.js 는 프레임워크)
+### 1. 섹션2
+(1)
+React : A JavaScript Library for building user interfaces
+        (사용자 인터페이스를 위한 자바스크립트 라이브러리)   
+사용자 인터페이스(User Interface, UI) : 사용자와 컴퓨터 프로그램 상호작용 위한 입력과 출력을 제어해주는 것   
+UI라이브러리 : React는 대표적인 UI라이브러리 이다.(ex: React / NGULARJS, Vue.js 는 프레임워크)   
 라이브러리는 개발자가 필요한 부분만 가져다가 쓰는 형태, 즉 라이브러리는 개발자가 제어권한을 프레임워크는 프레임워크에 제어권한이 있다.
 
 #### React 장점
