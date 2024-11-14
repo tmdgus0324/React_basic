@@ -23,6 +23,14 @@ import Blocks from './chapter_15/Blocks';
 
 
 /* chapter 3 */
+
+ReactDOM.render(
+  <React.StrictMode>
+    <Library />
+  </React.StrictMode>,
+  document.getElementById('root')
+);
+
 /*
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -148,14 +156,14 @@ ReactDOM.render(
 */
 
 /* chapter 15 */
-
+/*
 ReactDOM.render(
   <React.StrictMode>
     <Blocks />
   </React.StrictMode>,
   document.getElementById('root')
 );
-
+*/
 
 
 // If you want to start measuring performance in your app, pass a function

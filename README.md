@@ -1,4 +1,4 @@
-React_basic
+iReact_basic
 =============
 
 *****
@@ -127,39 +127,78 @@ npm uninstall react react-dom
 ### 3. 섹션4
     (1) JSX : A syntax extension to JavaScript 자바스크립트 확장문법
               -> javascript + xml,html
-              ex: `const element = <h1>Hello, world!</h1>;`
-    (2) JSX의 역할 : 
-        ```
+              ex) const element = <h1>Hello, world!</h1>;
+
+    (2) JSX의 역할
         React.createElement(    // createElement : jsx -> javascript코드로 변환
             type,
             [props],
             [...children]
         )
-        ```
+
     (3) JSX 비교
-        ```
-        // JSC를 사용한 코드
+        // JSX를 사용한 코드
         const element = (
             <h1 className="greeting">
                 Hello, world!
             </h1>
         )
-        // JSC를 사용하지 않은 코드
+        // JSX를 사용하지 않은 코드
         const element = React.createElement(
             'h1',
             {className:'greeting'},
             'Hello, world!;
         )
-        ```
+        // React.createElement()의 결과로 아래와 같은 객첵가 생성됨
+        // Element 형태
+        const element = {
+            type = 'h1',
+            props: {
+                className: 'greeting',
+                children: 'Hello, world!'
+            }
+        }
+        // React.createElement 형태
+        React.createElement(
+            type,
+            [props],
+            [...children]
+        )
 
-    (2) 장점 : 
-        간결한 코드 / createElement('div, null, `Hello, ${name}`'); 이걸 <div>Hello, {name}</div> 으로 대체가능
-        Injection Attacks 방어 -> XSS방어가 가능하다. {}안헤 들어가는 변수가 문자열 형태로 변환되기 때문
+    (4) 장점
+        - 간결한 코드
+          > createElement('div, null, `Hello, ${name}`'); 이걸 <div>Hello, {name}</div> 으로 대체가능
+        - 가독성이 좋음
+        - Injection Attacks 방어, 보안성 높음
+          > XSS방어가 가능하다. {}안헤 들어가는 변수가 문자열 형태로 변환되기 때문
+          ex) const title = response.potentiallyMaliciousInput;
+              // 이 코드는 안전하다.
+              const element = <h1>{title}</h1>;
 
+    (5) JSX 사용하기
+        - {}활용하기
+            const name = '소플';
+            const element = <h1>안녕, {name}</h1>
+
+            ReactDOM.render(
+                element,
+                document.getElementById('root')
+            );
+
+        - 태그의 속성(attribute)에 값을 넣는 방법
+            // 큰따옴표 사이에 문자열을 넣거나
+            const element = <div tabIndex="0"></div>;
+            // 중괄호 사이에 자바스크립트 코드를 넣으면 됨
+            const element = <img src={user.avatarUrl}></img>
+
+        - 자식(children)을 정의하는 방법
+            const element = (
+                <div>
+                    <h1>안녕하세요</h1>
+                    <h2>열심히 리액트를 공부해 봅시다.</h2>
+                </div>
+            );
     
-<div id="root"><</div>
-
-
 
 ### ch8
 useEffect(() => {
