@@ -124,14 +124,34 @@ npm uninstall react react-dom
           -> 패키지설치과정을 건너뛴거임 -> npm -g install create-react-app 설치
         - cd my-app > npm start 하면 localhost:3000 실행한다.
 
+### 3. 섹션4
+    (1) JSX : A syntax extension to JavaScript 자바스크립트 확장문법
+              -> javascript + xml,html
+              ex: `const element = <h1>Hello, world!</h1>;`
+    (2) JSX의 역할 : 
+        `React.createElement(    // createElement : jsx -> javascript코드로 변환
+            type,
+            [props],
+            [...children]
+        )`
+    (3) JSX 비교
+        `// JSC를 사용한 코드
+        const element = (
+            <h1 className="greeting">
+                Hello, world!
+            </h1>
+        )
+        // JSC를 사용하지 않은 코드
+        const element = React.createElement(
+            'h1',
+            {className:'greeting'},
+            'Hello, world!;
+        )`
 
 
-### ch4
-JSX : 자바스크립트 확장문법 xml,html
-
-장점 : 
-    간결한 코드 / createElement('div, null, `Hello, ${name}`'); 이걸 <div>Hello, {name}</div> 으로 대체가능
-    Injection Attacks 방어 -> XSS방어가 가능하다. {}안헤 들어가는 변수가 문자열 형태로 변환되기 때문
+    (2) 장점 : 
+        간결한 코드 / createElement('div, null, `Hello, ${name}`'); 이걸 <div>Hello, {name}</div> 으로 대체가능
+        Injection Attacks 방어 -> XSS방어가 가능하다. {}안헤 들어가는 변수가 문자열 형태로 변환되기 때문
 
     
 <div id="root"><</div>
