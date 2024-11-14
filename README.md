@@ -90,24 +90,39 @@ npm uninstall react react-dom
 ## 섹션별 정리
 
 ### 1. 섹션2
-    (1) React는?
-        A JavaScript Library for building user interfaces(사용자 인터페이스를 위한 자바스크립트 라이브러리)   
-        사용자 인터페이스(User Interface, UI) : 사용자와 컴퓨터 프로그램 상호작용 위한 입력과 출력을 제어해주는 것   
-        UI라이브러리 : React는 대표적인 UI라이브러리 이다.(ex: React / NGULARJS, Vue.js 는 프레임워크)   
-        라이브러리는 개발자가 필요한 부분만 가져다가 쓰는 형태, 즉 라이브러리는 개발자가 제어권한을 프레임워크는 프레임워크에 제어권한이 있다.
+    (1) React는? -> A JavaScript Library for building user interfaces
+        : 사용자 인터페이스를 위한 자바스크립트 라이브러리
+        - 사용자 인터페이스(User Interface, UI) 
+        : 사용자와 컴퓨터 프로그램 상호작용 위한 입력과 출력을 제어해주는 것   
+        - UI라이브러리 : React는 대표적인 UI라이브러리 이다.
+                    (ex: React / NGULARJS, Vue.js 는 프레임워크)   
+        > 라이브러리는 개발자가 필요한 부분만 가져다가 쓰는 형태, 
+        > 즉 라이브러리는 개발자가 제어권한을 프레임워크는 프레임워크에 제어권한이 있다.
 
     (2) React 장점
-    빠른 업데이트 & 렌더링 속도
-    Virtual DOM : 웹페이지를 담고 있는 하나의 객체
-    Component-Based : 컴포넌트들을 모아서 개발
-    재사용성(Reusability) : 의존성 문제, 다른 호환성 문제등이 생길 수 있음 / 다른 모듈 의존성을 낮춰서 개발필요
-    React 장점 : 개발기간 단축, 유지보수 용이(버그 찾기 쉬움), Meta
-    React Native : 모바일 앱개발 용이
+        - 빠른 업데이트 & 렌더링 속도
+        - Virtual DOM : 웹페이지를 담고 있는 하나의 객체
+        - Component-Based : 컴포넌트들을 모아서 개발
+        - 재사용성(Reusability) : 의존성 문제, 다른 호환성 문제등이 생길 수 있는데
+        - React 장점 : 개발기간 단축, 유지보수 용이(버그 찾기 쉬움), Meta
+        - React Native : 모바일 앱개발 용이
 
     (3) React 단점
-    Virtual DOM, JSX, Component, State, Props 학습량이 많다.
-    계속 달라진다.
-    높은 상태관리 복잡도, State관리가 복잡하다.(외부 상태관리 라이브러리를 사용하는 경우가 많다.)
+        - Virtual DOM, JSX, Component, State, Props 학습량이 많다.
+        - 계속 달라진다.
+        - 높은 상태관리 복잡도, State관리가 복잡하다.
+        - 외부 상태관리 라이브러리를 사용하는 경우가 많다.
+
+### 2. 섹션3
+    (1) React Component의 state가 변경되는 예시를 확인할 수 있다.
+    (2) ReactDOM의 render 함수를 사용, 
+        React Component를 Dom Container에 rendering 한다.
+    (3) create-react-app 활용(CRA)
+        - 사용법 : $ npx create-react-app <your-project-name>
+        - 실제 사용 예제 : $ npx create-react-app my-app
+        - npx create-react-app my-app -> ERROR 발생할 때 
+          -> 패키지설치과정을 건너뛴거임 -> npm -g install create-react-app 설치
+        - cd my-app > npm start 하면 localhost:3000 실행한다.
 
 
 
