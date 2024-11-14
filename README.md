@@ -129,13 +129,16 @@ npm uninstall react react-dom
               -> javascript + xml,html
               ex: `const element = <h1>Hello, world!</h1>;`
     (2) JSX의 역할 : 
-        `React.createElement(    // createElement : jsx -> javascript코드로 변환
+        ```
+        React.createElement(    // createElement : jsx -> javascript코드로 변환
             type,
             [props],
             [...children]
-        )`
+        )
+        ```
     (3) JSX 비교
-        `// JSC를 사용한 코드
+        ```
+        // JSC를 사용한 코드
         const element = (
             <h1 className="greeting">
                 Hello, world!
@@ -146,8 +149,8 @@ npm uninstall react react-dom
             'h1',
             {className:'greeting'},
             'Hello, world!;
-        )`
-
+        )
+        ```
 
     (2) 장점 : 
         간결한 코드 / createElement('div, null, `Hello, ${name}`'); 이걸 <div>Hello, {name}</div> 으로 대체가능
