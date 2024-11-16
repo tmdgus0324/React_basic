@@ -1,4 +1,4 @@
-iReact_basic
+React_basic
 =============
 
 *****
@@ -222,6 +222,70 @@ npm uninstall react react-dom
           -> const element = <h1>Hello</h1>; 
              ReactDOM.render(element, document.getElementById('root'));
         >> 결국 React Element가 rendering되는 과정 : Virtual DOM -> Real DOM으로 이동하는 과정  
+
+### 5. 섹션6
+    (1) Components : Component-based, 레고블록 조립하듯 Component를 모아서 개발
+        - React는 Component기반 -> 작은 Component들이 모여서 하나의 Component를 구성하고 전체 페이지구성
+        - 하나의 Component를 반복적으로 사용함으로써, 개발시간 유지보수 시간 Down
+        - React Component =~ Java Script
+        - 입력(Props) -> React Component -> 출력(React Element)
+          > 어떠한 속성들을 입력으로 받아서 그에 맞는 React Element를 생성하여 return해 주는것
+
+    (2) Props : React Component의 속성(붕어빵에 들어가는 재료)
+        - 입력(Props) -> React Component -> 출력(React Element)
+        - 쇼핑 아이템 : 같은 React Component에서 생성된 Element 여기서 Component의 모습, 속성 결정
+        - Component의 어떤 데이터를 전달하고 전달된 데이터에 따라 
+          다른 모습의 Element를 화면에 rendering할 때 해당 데이터를 Props에 넣어서 전달하는 것
+
+    (3) Props의 특징 : Read-Only
+        - sum=a+b; : 항상 같은 값을 리턴한다. -> pure
+        - account.total -= amount; : 총액에서 amount를 빼서 잔액을 표현한다. -> impure
+        - 모든 React Component는 그들의 props에 관해서는 pure함수 역할을 해야한다.
+          > 직접 props를 바꿀 수 없고, 같은 props에 대해서는 항상 같은 결과를 보여줘야 한다.
+
+        ex) function App(props) {
+            return (
+                <Profile
+                    name="소플"
+                    introduction="안녕하세요"
+                    viewCount={1500}
+                />
+            );}
+        
+            > 이 코드에는 App Component가 나오고 그 안에서 Profile Component를 사용
+              {} 중괄호 사용시에는 Java Script 코드가 들어감
+
+        - 참고 : JSX를 사용하지 않고 코드를 작성한다면...
+            React.createElement(
+                type,
+                [props],
+                [...children],
+            )
+
+        ex) React.createElement(
+                Profile,
+                {
+                    name:"소플",
+                    introduction:"안녕하세요",
+                    viewCount:1500
+                },
+                null        // 하위 Component가 없기 때문에 null값이 들어감
+            );
+
+    (4) Function Component
+        ex) function Welcome(props){
+                return <h1>안녕, {props.name}</h1>
+            }
+        > 하나의 props 객체를 받아서 인삿말이 담긴 React Element를 return 한다.
+        > React Component
+        > Function Component
+
+    (5) Class Component : JavaScript ES6의 Class를 사용해서 만들어진 Component
+        ex) class Welcome extends React.Component {
+                render() {
+                    return <h1>안녕, {this.props.name}</h1>;
+                }
+            }
 
 
 ### ch8
