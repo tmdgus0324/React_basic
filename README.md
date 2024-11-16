@@ -198,7 +198,31 @@ npm uninstall react react-dom
                     <h2>열심히 리액트를 공부해 봅시다.</h2>
                 </div>
             );
-    
+### 4. 섹션5   
+    (1) Element : React 앱을 구성하는 가장 작은 블록들
+
+    (2) React, Dom Element 차이점 : React Element는 DOM Element의 가상 표현(React < DOM)
+        ex) const element = <h1>Hello</h1>; 
+            > 대입 연산자의 오른쪽을 React의 createElement 함수를 사용하여 Element를 생성
+            > React는 이 Element를 이용해서 실제 우리가 화면에서 보게 될 DOM Element를 생성
+            > React Element는 자바스크립트 객체 형태로 존재
+        - Element는 Component의 유형과 속성 및 내부의 모든 자식에 대한 정보를 포함하고 있는 자바스크립트 객체
+        - Component rendering을 위해 모든 Component가 CreateElement 함수를 통해 Element로 변환됨
+        - 즉, React의 Element는 우리 눈에 실제로 보이는 것을 기술
+
+    (3) Element 특징
+        - Element는 다양한 모습으로 존재할 수 있지만 한번 생성된 다음에는 변경이 불가능
+        - 붕어빵 굽기(Component(붕어빵틀) -> Element(붕어빵)) -> 굽기고난 후 내용물 변경불가
+        - Virtual Dom은 변경된 부분을 계산, 해당부분을 rendering함 -> Element 새로 생성됨
+
+    (4) Element rendering
+        - <div id="root"></div>
+        - React : 단 하나의 루트 DOM 노드
+        - root div에 실제로 React Element를 렌더링하기 위해서 아래 코드사용
+          -> const element = <h1>Hello</h1>; 
+             ReactDOM.render(element, document.getElementById('root'));
+        >> 결국 React Element가 rendering되는 과정 : Virtual DOM -> Real DOM으로 이동하는 과정  
+
 
 ### ch8
 useEffect(() => {
