@@ -287,6 +287,86 @@ npm uninstall react react-dom
                 }
             }
 
+        - Component 이름은 항상 대문자로 시작해야 한다. 소문자는 Dom Element로 인식한다.
+        ex) const element = <div />;                 // Dom 태그 사용한 element
+            const element = <Welcome name="Roy" />;  // 사용자정의한 Component를 사용한 element
+        - Component rendering
+        ex) function Welcome(props) {
+                return <h1>안녕, {props.name}</h1>;
+            }
+            const element = <Welcome name="Roy" />;
+            ReactDOM.render (
+                element,
+                document.getElementById('root')
+            );
+
+        - Component안에 Component구성을 할 수 있다.
+        ex) function App(props) {
+                return(
+                    <div>
+                        <Welcome name="Mike" />
+                        <Welcome name="Steve" />
+                        <Welcome name="Jane" />
+                    </div>
+                )
+            }
+
+        - Component 추출 : 큰 컴포넌트에서 쪼개서 사용한다. 재사용성 up
+        ex) function Avatar(props) {
+                return (
+                    <img className="avatar" 
+                        src={props.user.avatarUrl}
+                        alt={props.user.name}
+                    />
+                );
+            }
+
+            > Component 사용
+            <Avatar user={props.author} />
+
+            > UserInfo 추출
+            function UserInfo(props) {
+                return (
+                    <div className="user-info">
+                        <Avatar user={props.user} />
+                        <div className="user-info-name">
+                            {props.user.name}
+                        </div>
+                    </div>
+                );
+            }
+
+### 6. 섹션7
+    (1) State : React Component의 상태, 변경가능한 데이터
+        - rendering이나 데이터 흐름에 사용되는 값만 state에 포함시킨다.
+        - state는 JavaScript 객체이다.
+        ex) class LikeButton extends React.Component {
+                // class가 생성될때 실행되는 함수
+                constructor(props) {
+                    super(props);
+
+                    // 현재 state를 정의함(useState Hook에서 정의함)
+                    this.state = {
+                        liked: false
+                    };
+                }
+                ...
+            }
+        
+        - State는 직접적인 변경 불가능!
+        ex) this.state = { name : 'Roy' };          // 직접수정(잘못된수정)
+            this.setState = ({ name : 'Roy' });
+            > setState함수를 사용하여 state를 변경한다.
+
+    (2) Lifecycle : 생명주기, class Component 최근에 잘 안쓴다.
+        출생          >              인생            >            사망
+        Mounting         >           Updating          >         Unmounting
+        constructor    >   render
+                           React updates DOM and refs
+        componentDidMount    >       componentDidUpdate    >      componentDidUnmount
+        > Component가 계속 존재하는 것이 아닌, 시간의 흐름에 따라 생성되고 업데이트 되다가 사라진다.    
+
+
 
 ### ch8
 useEffect(() => {
