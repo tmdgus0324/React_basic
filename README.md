@@ -368,27 +368,152 @@ npm uninstall react react-dom
 
 
 
-### ch8
-useEffect(() => {
-    // 컴포넌트가 마운트 된 이후,
-    // 의존성 배열에 있는 변수들 중 하나라도 값이 변경되었을 때 실행됨
-    // 의존성 배열에 빈 배열([])을 넣으면 마운트와 언마운트시에 단 한 번씩만 실행됨
-    // 의존성 배열 생략 시 컴포넌트 업데이트 시마다 실행됨
+### 7. 섹션8
+    (1) hooks
+        - Function Component : state 사용불가, Lifecycle에 따른 기능 구현 불가
+          > Hooks를 사용하여 Class Component처럼 사용가능
 
-    return () => {
-        // 컴포넌트가 마운트 해제되기 전에 실행됨
-        ...
-    }
+        - useState : state를 사용하기 위한 Hook
+        ex) import React, { useState } from "react";
 
-}, [의존성 변수1, 의존성 변수2, ...]
+            function Counter(props) {
+                var count = 0;
 
-Hook의 규칙
-1. Hook은 무조건 최상위 레벨에서만 호출해야 한다.
-2. 리액트 함수 컴포넌트에서만 Hook을 호출해야 한다.
+                return (
+                    <div>
+                        <p>총 {count}번 클릭했습니다.</p>
+                        <button onClick={() => count++}>
+                            클릭
+                        </button>
+                    </div>
+                );
+            }
 
-플러그인 : eslint-plugin-react-hooks
+          > const [변수명, set함수명] = useState(초기값);
+        ex) import React, { useState } from "react";
+            // 변수 각각에 대해 set합수가 따로 존재!
+            function Counter(props) {
+                const [count, setCount] = useState(0);
+            }
 
-Custom Hook : use로 시작해야 한다.
+            return (
+                <div>
+                    <p>총 {count}번 클릭했습니다.</p>
+                    <button onClick={() => setCount(count + 1)}>
+                        클릭
+                    </button>
+                </div>
+            );
+        
+        - useEffect() : Side effect(효과, 영향)를 수행하기 위한 Hook
+        ex1) useEffect(() => {
+                // 컴포넌트가 마운트 된 이후,
+                // useEffect(이펙트 함수, 의존성 배열);
+
+                // 의존성 배열에 있는 변수들 중 하나라도 값이 변경되었을 때 실행됨
+                // useEffect(이펙트 함수, []);
+
+                // 의존성 배열에 빈 배열([])을 넣으면 마운트와 언마운트시에 단 한 번씩만 실행됨
+                // 의존성 배열 생략 시 컴포넌트 업데이트 시마다 실행됨
+                // useEffect(이펙트 함수);
+
+                return () => {
+                    // 컴포넌트가 마운트 해제되기 전에 실행됨
+                    ...
+                }
+
+             }, [의존성 변수1, 의존성 변수2, ...]
+        
+        ex2) import React, { useState, useEffect } from "react";
+             function Counter(props) {
+                const [count, setCount] = useState(0);
+
+                // componentDidMount, componentDidUpdate와 비슷하게 동작
+                useEffect(() => {
+                    // 브라우저 API를 사용해서 document의 title을 업데이트
+                    document.title = `You clicked ${count} times`;
+                });
+
+                return (
+                    <div>
+                        <p> 총 {count}번 클릭했습니다.</p>
+                        <button onClick={() => setCount(count + 1)}>
+                            클릭
+                        </button>
+                    </div>
+                );
+             }
+        
+        ex3) import React, { useState, useEffect } from "react";
+
+             function UserStatus(props) {
+                const [isOnline, setIsOnline] = useState(null);
+
+                function handleStatusChange(status) {
+                    setIsOnline(status.isOnline);
+                }
+
+                useEffect(() => {
+                    ServerAPI subscribeUserStatus(props.user.id, handleStatusChange);
+
+                    // Component가 unmount될 때 호출됨
+                    return () => {
+                        ServerAPI.unsubscribeUserStatus(props.user.id, handleStatusChange);
+                    };
+                });
+
+                if (isOnline === null) {
+                    return '대기 중...';
+                }
+                return isOnline ? '온라인' : '오프라인';
+             }
+        
+        ex4) function UserStatusWithCounter(props) {
+                const [count, setCount] = useState(0);
+                useEffect(() => {
+                    document.title = `총 ${count}번 클릭했습니다.`;
+                });
+
+                const [isOnline, setIsOnline] = useState(null);
+                useEffect(() => {
+                    ServerAPI.subscribeUserStatus(props.user.id, handleStatusChange);
+                    return () => {
+                        ServerAPI.unsubscribeUserStatus(props.user.id, handleStatusChange);
+                    };
+                });
+
+                function handleStatusChange(status) {
+                    setIsOnline(status.isOnline);
+                }
+
+                //...
+             }
+
+        ex5) useEffect(() => {
+                // 컴포넌트가 마운트 된 이후,
+                // 의존성 배열에 있는 변수들 중 하나라도 값이 변경되었을 때 실행됨
+                // 의존성 배열에 빈 배열([])을 넣으면 마운트와 언마운트시에 단 한 번씩만 실행됨
+                // 의존성 배열 생략 시 컴포넌트 업데이트 시마다 실행됨
+                ...
+
+                return () => {
+                    // 컴포넌트가 마운트 해제되기 전에 실행됨
+                    ...
+                }
+             }, [의존성 변수1, 의존성 변수2, ...]);
+
+
+
+
+
+
+        Hook의 규칙
+        1. Hook은 무조건 최상위 레벨에서만 호출해야 한다.
+        2. 리액트 함수 컴포넌트에서만 Hook을 호출해야 한다.
+
+        플러그인 : eslint-plugin-react-hooks
+
+        Custom Hook : use로 시작해야 한다.
 
 
 
