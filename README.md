@@ -502,8 +502,113 @@ npm uninstall react react-dom
                 }
              }, [의존성 변수1, 의존성 변수2, ...]);
 
+    (2) useMemo() : Memoized value를 리턴하는 Hook
+        - Memoization : 최적화를 위해서 사용하는 개념, 이전에 호출했던 결과를 바로 받는다.
+        ex1) const memoizedValue = useMemo(
+                () => {
+                    // 연산량이 높은 작업을 수행하여 결과를 반환
+                    return computeExpensiveValue(의존성 변수1, 의존성 변수2);
+                },
+                [의존성 변수1, 의존성 변수2]
+             );
+        
+        ex2) const memoizedValue = useMemo(
+                () => computeExpensiveValue(a, b)
+             );
 
+        ex3) const memoizedValue = useMemo(
+                () => {
+                    return computeExpensiveValue(a, b);
+                },
+                []
+             );
 
+    (3) useCallback() : useMemo() Hook과 유사하지만 값이 아닌 함수를 반환
+        ex) const memoizedCallback = useCallback(
+                () => {
+                    doSomething(의존성 변수1, 의존성 변수2);
+                },
+                [의존성 변수1, 의존성 변수2]
+            );
+        
+        - 동일한 역할을 하는 두 줄의 코드
+            > useCallback(함수, 의존성 배열);
+            > useMemo(() => 함수, 의존성 배열);
+
+        ex) import { useState } from "react";
+
+            function ParentComponent(props) {
+                const [count, setCount] = useState(0);
+
+                // 재렌더링 될 때마다 매번 함수가 새로 정의됨
+                const handleClick = (event) => {
+                    // 클릭 이벤트 처리
+                };
+
+                // useCallback 사용할 경우 : 컴포넌트가 마운트 될 때만 함수가 정의됨
+                const handleClick = useCallback((event) => {
+                    // 클릭 이벤트 처리
+                }, []);
+
+                return (
+                    <div>
+                        <button
+                            onClick={() => {
+                                setCount(count + 1);
+                            }}
+                        >
+                            {count}
+                        </button>
+
+                        <ChildComponent handleClick={handleClick} />
+                    </div>
+                );
+            }
+
+    (4) useRef() : Reference를 사용하기 위한 Hook
+        - 특정 컴포넌트에 접근할 수 있는 객체
+        - refObject.current
+        - const refContainer = useRef(초깃값);
+        ex) function TextInputWithFocusButton(props) {
+                const inputElem = useRef(null);
+
+                const onButtonClick = () => {
+                    // `current`는 마운트된 input element를 가리킴
+                    inputElem.current.focus();
+                };
+
+                return (
+                    <>
+                        <input ref={inputElem} type="text" />
+                        <button onClick={onButtonClick}>
+                            Focus the input
+                        </button>
+                    </>
+                );
+            }
+
+        - <div ref={myRef} /> : 다양한 변수를 저장가능
+        - useRef() Hook은 내부의 데이터가 변경되었을 때 별도로 알리지 않음
+
+        - Callback ref
+        ex) function MeasureExample(props) {
+                const [height, setHeight] = useState(0);
+
+                const measureRef = useCallback(node => {
+                    if (node !== null) {
+                        setHeight(node.getBoundingClientRect().height);
+                    }
+                }, []);
+
+                return (
+                    <>
+                        <h1 ref={measuredRef}>안녕, 리액트</h1>
+                        <h2>위 헤더의 높이는 {Math.round(height)}px 입니다.</h2>
+                    </>
+                );
+            }
+
+    (5) Hook의 규칙과 Custom Hook 만들기 ...
 
 
 
