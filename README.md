@@ -608,17 +608,139 @@ npm uninstall react react-dom
                 );
             }
 
-    (5) Hook의 규칙과 Custom Hook 만들기 ...
+    (5) Hook의 규칙
+        - Hook은 무조건 최상위 레벨에서만 호출해야 한다.
+          > Hook은 컴포넌트가 렌더링될 때마다 매번 같은 순서로 호출되어야 한다.
+        ex) function MyComponent(props) {
+                const [name, setName] = useState('Inje');
 
+                if(name !== '') {
+                    useEffect(() => {
+                        ...
+                    });
+                }
+                ...
+            }
+        
+        - 리엑트 함수 컴포넌트에서만 Hook을 호출해야 한다.
 
+        - 플러그인 : eslint-plugin-react-hooks 
+          > hook의 규칙을 강제로 따르도록 도와주는 도구
+        ex) const memoizedValue = useMemo(
+                () => {
+                    // 연산량이 높은 작업을 수행하여 결과를 반환
+                    return computeExpensiveValue(의존성 변수1, 의존성 변수2);
+                },
+                [의존성 변수1, 의존성 변수2]
+            );
 
-        Hook의 규칙
-        1. Hook은 무조건 최상위 레벨에서만 호출해야 한다.
-        2. 리액트 함수 컴포넌트에서만 Hook을 호출해야 한다.
+        - Custom Hook 만들기    
+          > Custom Hook이 필요한 상황확인
+        ex1) import React, { useState, useEffect } from "react";
 
-        플러그인 : eslint-plugin-react-hooks
+            function UserStatus(props) {
+                const [isOnline, setIsOnline ] = useState(null);
 
-        Custom Hook : use로 시작해야 한다.
+                useEffect(() => {
+                    function handleStateChange(status) {
+                        setIsOnline(status.isOnline);
+                    }
+
+                    ServerAPI.subscribeUserStatus(props.user.id, handleStatusChange);
+                    return () => {
+                        ServerAPI.unsubscribeUserStatus(props.user.id, handleStatusChange);
+                    };
+                });
+
+                
+                if (isOnline === null) {
+                    return '대기중...';
+                }
+
+                return is Online ? '온라인' : '오프라인';
+                
+        ex2) import React, { useState, useEffect } from "react";
+
+            function UserStatus(props) {
+                const [isOnline, setIsOnline ] = useState(null);
+
+                useEffect(() => {
+                    function handleStateChange(status) {
+                        setIsOnline(status.isOnline);
+                    }
+
+                    ServerAPI.subscribeUserStatus(props.user.id, handleStatusChange);
+                    return () => {
+                        ServerAPI.unsubscribeUserStatus(props.user.id, handleStatusChange);
+                    };
+                });
+                return (
+                    <li style={{ color: isOnline ? 'green' : 'black' }}>
+                        {props.user.name}
+                    </li>
+                );
+            }
+        
+        ex3) ex1, ex2 두개의 예제에서 Custom Hook 사용하기
+             function UserStatus(props) {
+                const isOnline = useUserStatus(props.user.id);
+
+                if(isOnline === null) {
+                    return '대기중...';
+                }
+                return isOnline ? '온라인' : '오프라인';
+             }
+
+             function UserListItem(props) {
+                const isOnline = userUserStatus(props.user.id);
+
+                return (
+                    <li style={{ color: isOnline ? 'green' : 'black' }}>
+                        {props.user.name}
+                    </li>
+                );
+             }
+
+        - Custom Hook의 이름은 꼭 use로 시작해야 한다.
+          > 여러 개의 컴포넌트에서 하나의 Custom Hook을 사용할 때 
+            컴포넌트 내부에 있는 모든 state와 effects는 전부 분리되어 있음.
+          > 각 Custom Hook 호출에 대해서 분리된 state를 얻게 됨!
+          > 각 Custom Hook의 호출 또한 완전히 독립적이다.
+
+        - Hook들 사이에서 데이터를 공유하는 방법
+        ex) const userList = [
+                { id: 1, name: 'Inje' },
+                { id: 2, name: 'Mike' },
+                { id: 3, name: 'Steve' },
+            ];
+
+            function ChatUserSelector(props) {
+                /*
+                useState Hook을 사용해서 userId라는 state를 생성, 
+                다음에 나오는 userUserStatus Hook의 파라미터로 들어감
+                setUserID함수를 통해 유저 아이디가 변경될 때 
+                useUserStatusHook은 이전 사용자 구독취소하고 새로 선택된 사용자 온라인 여부 구독
+                */
+                const [userId, setUserId] = useState(1);
+                const isUserOnline = useUserStatus(userId);
+
+                return (
+                    <>
+                        <Circle color={isUserOnline ? 'green' : 'red'} />
+                        <select
+                            value={userId}
+                            onChage={event => setUserId(Number(event.target.value))}
+                        >
+                            {userList.map(user => (
+                                <option key={user.id} value={user.id}>
+                                    {user.name}
+                                </option>
+                            ))}
+                        </select>
+                    </>
+                );
+            }
+
 
 
 
