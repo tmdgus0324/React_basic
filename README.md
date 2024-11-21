@@ -741,16 +741,120 @@ npm uninstall react react-dom
                 );
             }
 
+### 8. 섹션9
+    (1) Event : 사건
+        - 버튼 클릭 이벤트, 이벤트를 핸들링...
+        ex) // 리액트의 Event
+            <button onClick={activate}>
+                Activate
+            </button>
 
+            // DOM의 Event
+            <button onclick="activate()">
+                Activate
+            </button>
 
+    (2) Event Handler : 어떤 사건이 발생하면, 사건을 처리하는 역할(Event Listener)
+        ex) class Toggle extend React.Component {
+                constructor(props) {
+                    super(props);
 
-### ch9
-Event
-버튼 클릭 이벤트, 이벤트를 핸들링...
+                    this.state = { isToggleOn: true };
 
-<button onClick={activate}>
-    Activate
-</button>
+                    // callback에서 `this`를 사용하기 위해서는 바인딩을 필수적으로 해줘야
+                    this.handleClick = this.handleClick.bind(this);
+                }
+
+                handleClick() {
+                    this.setState(prevState => ({
+                        isToggleOn: !prevState.isToggleOn
+                    }));
+                }
+
+                render() {
+                    return (
+                        <button onClick={this.handleClick}>
+                            {this.state.isToggleOn ? '켜짐' : '꺼짐'}
+                        </button>
+                    );
+                }
+            }
+        
+        - 바인딩을 안쓰려면 1)
+        ex) class MyButton extends React.Component {
+                // Class fields syntax 사용
+                handleClick = () => {
+                    console.log('this is:', this);
+                }
+
+                render() {
+                    return (
+                        <button onClick={this.handleClick}>
+                            클릭
+                        </button>
+                    );
+                }
+            }
+        
+        - 바인딩을 안쓰려면 2)
+        ex) class MyButton extends React.Component {
+                handleClick() {
+                    console.log('this is:', this);
+                }
+
+                render() {
+                    // 이렇게 하면 'this'가 바운드됩니다.
+                    // Arrow function 사용
+                    return (
+                        <button onClick={() => this.handleClick()}>
+                            클릭
+                        </button>
+                    );
+                }
+            }
+
+        - 함수 컴포넌트에서는 Event처리를 어떻게?
+        ex) // 앞에 Toggle Component를 함수 Component로 변환하면?
+            function Toggle(props) {
+                const [isToggleOn, setIsToggleOn] = useState(true);
+
+                // 방법1. 함수 안에 함수로 정의
+                function handleClick() {
+                    setIsToggleOn((isToggleOn) => !isToggleOn);
+                }
+
+                // 방법2. arrow function을 사용하여 정의
+                const handleClick = () => {
+                    setIsToggleOn((isToggleOn) => !isToggleOn);
+                }
+
+                return (
+                    // this를 쓰지 않아도 된다.
+                    <button onClick={handleClick}>
+                        {isToggleOn ? "켜짐" : "꺼짐"}
+                    </button>
+                );
+            }
+        
+        - Arguments 전달하기(함수에 주장할 내용, 함수에 전달할 데이터, Parameter(매개변수))
+        ex) // 바인딩을 사용하는 방법
+            <button onClick={(event) => this.deleteItem(id, event)}>삭제하기</button>
+            // Arrow function 사용
+            <button onClick={this.deleteItem.bind(this, id)}>삭제하기</button>
+
+        - 함수 컴포넌트에서 Evnet Handler에 매개변수를 전달할 때
+        ex) function MyButton(props) {
+                const handleDelete = (id, event) => {
+                    console.log(id, event.target);
+                };
+
+                return (
+                    <button onClick={(event) => handleDelete(1, event)}>
+                        삭제하기
+                    </button>
+                );
+            }
+
 
 
 Truthy true는 아니지만 true로 여겨지는 값
