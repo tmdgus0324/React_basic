@@ -855,32 +855,151 @@ npm uninstall react react-dom
                 );
             }
 
+### 9. 섹션10
+    (1) Conditional Rendering : 조건부 렌더링, 어떠한 조건에 따라서 렌더링이 달라지는 것
+        ex) //true이면 버튼 보여주고, false이면 버튼 비활성화
+            function Greeting(props) {
+                const isLoggedIn = props.isLoggedIn;
 
+                if(isLoggedIn) {
+                    return <UserGreeting />;
+                }
+                return <GuestGreeting />;
+            }
 
-Truthy true는 아니지만 true로 여겨지는 값
-Falsy false는 아니지만 false로 여겨니는 값
+        - Truthy : true는 아니지만 true로 여겨지는 값
+        ex) // truthy
+            true
+            {} (empty object)
+            [] (empty array)
+            42 (number, not zero)
+            "0", "false" (string, not empty)
 
-// truthy
-true
-{} (empty object)
-[] (empty array)
-42 (number, not zero)
-"0", "false" (string, not empty)
+        - Falsy : false는 아니지만 false로 여겨니는 값
+        ex) // falsy
+            false
+            0, -0 (zero, minus zero)
+            0n (BigInt zero)
+            '', "", `` (empty string)
+            null
+            undefined
+            NaN (not a number)
 
-// falsy
-false
-0, -0 (zero, minus zero)
-0n (BigInt zero)
-'', "", `` (empty string)
-null
-undefined
-NaN (not a number)
+    (2) Element Variables
+        ex) function LoginButton(props) {
+                return (
+                    <button onClick={props.onClick}>
+                        로그인
+                    </button>
+                );
+            }
 
-조건부 랜더링
-Inline Conditions
-    true && expression -> expression
-    false && expression -> false
-Component 랜더링 x -> null 리턴    
+            function LogoutButton(props) {
+                return (
+                    <button onClick={props.onClick}>
+                        로그아웃
+                    </button>
+                );
+            }
+
+            function LoginControl(props) {
+                const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+                const handleLoginClick = () => {
+                    setIsLoggedIn(true);
+                }
+
+                const handleLogoutClick = () => {
+                    setIsLoggedIn(false);
+                }
+
+                let button;
+                if(isLoggedIn) {
+                    button = <LogoutButton onClick={handleLogoutClick} />;
+                } else {
+                    button = <LoginButton onClick={handleLoginClick} />;
+                }
+
+                return (
+                    <div>
+                        <Greeting isLoggedIn = {isLoggedIn} />
+                        {button}
+                    </div>
+                )
+            }
+
+    (3) Inline Conditions : 조건문을 코드 안에 집어넣는 것
+        - if문의 경우 &&연산자를 사용
+            > true && expression -> expression
+            > false && expression -> false -> Short-Circuit Evaluation
+        
+        ex) function Mailbox(props) {
+                const unreadMessages = props.unreadMessages;
+
+                return (
+                    <div>
+                        <h1> 안녕하세요! </h1>
+                        {unreadMessages.lendth > 0 &&
+                            <h2>
+                                현재 {unreadMessages.length}개의 읽지 않은 메시지가 있습니다.
+                            </h2>
+                        }   
+                    </div>
+                );
+            }
+
+            function Counter(props) {
+                const count = 0;
+
+                return(
+                    <div>
+                        {count && <h1>현재 카운트: {count}</h1>}
+                    </div>
+                );
+            }
+
+    (4) Inline if-Else : if-else문의 경우 ? 연산자를 사용, 삼항연산자
+        - condition ? true : false
+        ex) function UserStatus(props) {
+             return (
+              <div>
+                이 사용자는 현재 
+                <b>{props.isLoggedIn ? '로그인' : '로그인하지 않은'}</b> 
+                상태입니다.
+              </div>
+            )
+        }
+
+    (5) Component 랜더링 막기 -> null 리턴
+        ex) function WarningBanner(props) {
+                if(!props.warning) {
+                    return null;
+                }
+
+                return (
+                    <div>경고!</div>
+                );
+            }
+
+            function MainPage(props) {
+                const [showWarning, setShowWarning] = useState(false);
+
+                const handleToggleClick = () => {
+                    setShowWarning(prevShowWarning => !prevShowWarning);
+                }
+
+                return (
+                    <div>
+                        <WarningBanner warning={showWarning} />
+                        <button onClick={handleToggleClick}>
+                            {showWarning ? '감추기' : '보이기'}
+                        </button>
+                    </div>
+                )
+            }
+        
+        - 참고 : class 컴포넌트의 렌더 함수에서 null을 리턴하는 것은 
+                컴포넌트의 생명주기 함수에 전혀 영향x -> ex) componentDidUpdate 함수는 호출됨
 
 
 
