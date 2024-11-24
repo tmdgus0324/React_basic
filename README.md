@@ -1001,14 +1001,79 @@ npm uninstall react react-dom
         - 참고 : class 컴포넌트의 렌더 함수에서 null을 리턴하는 것은 
                 컴포넌트의 생명주기 함수에 전혀 영향x -> ex) componentDidUpdate 함수는 호출됨
 
+### 10. 섹션11
+    (1) List : 목록
+        - Array
+        ex) const numbers = [1, 2, 3, 4, 5];
+        
+    (2) Key : 열쇠, 고유값
+        - 각 개체나 아이템을 구분할 수 있는 고유값
+        - React에서의 Key : 아이템들을 구분하기 위한 고유한 문자열
 
+    (3) 여러개의 Component Rendering 하기
+        - map() : 다수의 Component 랜더링 가능
+        ex) const doubled = numbers.map((number) => number * 2);
+        ex) const numbers = [1,2,3,4,5];
+            const listItems = numbers.map((number) =>
+                <li>{number}</li>
+            );
 
-### ch10
-List, Array, Key(고유값)
+            ReactDOM.render(
+                <ul>{listItems}</ul>,
+                document.getElementById('root')
+            );
 
-map() : 다수의 Component 랜더링 가능
-        map() 함수 안에 있는 Elements는 꼭 key가 필요하다
+            // 최종적으로 rendering되는 코드는 아래와 같다.
+            ReactDOM.render(
+                <ul>
+                    <li>{1}</li>
+                    <li>{2}</li>
+                    <li>{3}</li>
+                    <li>{4}</li>
+                    <li>{5}</li>
+                </ul>,
+                document.getElementById('root')
+            );
+        
+        ex) // 위 예시를 이용하여 별도 리스트 Component를 분리
+            function NumberList(props) {
+                const { numbers } = props;
 
+                const listItems = numbers.map((number) =>
+                    <li>{number}</li>
+                );
+
+                return (
+                    <ul>{listItems}</ul>
+                );
+            }
+
+            const numbers = [1,2,3,4,5];
+            ReactDOM.render(
+                <NumberList numbers={numbers} />,
+                document.getElementById('root')
+            );
+            // 위 예시를 실행하면 개발자모드에서 경고문구가 나온다.
+            // > map() 함수 안에 있는 Elements는 꼭 key가 필요하다
+    
+    (4) List의 Key
+        - 주민등록번호, 학번, 핸드폰 번호, 여권번호...
+        - Key의 값은 같은 List에 있는 Element 사이에서만 고유한 값이면 됨.
+        ex) // 고유한 Key값 사용방법 : Key값으로 숫자를 사용할 경우
+            const numbers = [1,2,3,4,5];
+            const listItems = numbers.map((number) => 
+                <li key={number.toString()}>
+                    {number}
+                </li>
+            );
+        ex) // Key값으로 ID를 사용하는 경우
+            const todoItems = todos.map((todo, index) =>
+                // 아이템들의 고유한 ID가 없을 경우에만 사용해야 함
+                <li key={index}>
+                    {todo.text}
+                </li>
+            );
+        - map() 함수 안에 있는 Elements는 꼭 key가 필요하다
 
 
 ### ch11
