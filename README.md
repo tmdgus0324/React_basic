@@ -1075,10 +1075,46 @@ npm uninstall react react-dom
             );
         - map() 함수 안에 있는 Elements는 꼭 key가 필요하다
 
+### 11. 섹션12
+    (1) Form : 사용자로부터 입력을 받기 위해 사용
+        ex) <form>
+                <label>
+                    이름:
+                    <input type="text" name="name" />
+                </label>
+                <button type="submit">제출</button>
+            </form>
 
-### ch11
-html -> input, textarea, select태그 등 각각의 state로 관리
-Controlled Components -> 모든데이터 state에서, 변경할때 setState함수를 사용, 함수 컴포넌트에서는 useState hook사용
+    (2) Controlled Components : 값이 리액트의 통제를 받는 Input Form Element
+        - html -> input, textarea, select태그 등 각각의 state로 관리
+        - 모든데이터 state에서, 변경할때 setState함수를 사용, 함수 컴포넌트에서는 useState hook사용
+        ex) function NameForm(props) {
+                const [value, setValue] = useState('');
+
+                // onChageCallback 함수의 첫번째 파라미터인 event는 이벤트 객체를 나타냄
+                // event.target은 현재 발생한 이벤트의 타겟을 의미, event.target.value는 타켓의 value 속성값 의미
+                // 타겟은 input element가 되며 event.target.value는 input element의 값이됨
+                const handleChange = (event) => {
+                    setValue(event.target.value);
+                }
+
+                const handleSubmit = (event) => {
+                    alert('입력한 이름: ' + value);
+                    event.preventDefault();
+                }
+
+                // 리엑트 컴포넌트의 state 값을 가져다 넣어준다.
+                // handleChange 함수에서는 setValue함수를 사용하여 새롭게 변경된 값을 value state에 저장
+                return (
+                    <form onSubmit={handleSubmit}>
+                        <label>
+                            이름:
+                            <input type="text" value={value} onChage={handleChange} />
+                        </lable>
+                        <button type="submit">제출</button>
+                    </form>
+                )
+            }
        
 
 
