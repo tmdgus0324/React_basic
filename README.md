@@ -1115,10 +1115,124 @@ npm uninstall react react-dom
                     </form>
                 )
             }
-       
+
+    (3) Textarea 태그
+        ex) function RequestForm(props) {
+                const [value, setValue] = useState('요청사항을 입력하세요.');
+
+                const handleChange = (event) => {
+                    setValue(event.target.value);
+                }
+
+                const handleSubmit = (event) => {
+                    alert('입력한 요청사항: ' + value);
+                    event.preventDefault();
+                }
+
+                return (
+                    <form onSubmit={handleSubmit}>
+                        <label>
+                            요청사항:
+                            <textarea value={value} onChage={handleChange} />
+                        </label>
+                        <button type="submit">제출</button>
+                    </form>
+                )
+            }
+
+    (4) Select 태그 : Drop-down 목록을 보여주기 위한 HTML 태그
+        ex) function FruitSelect(props) {
+                const [value, setValue] = useState('grape');
+
+                const handleChange = (event) => {
+                    setValue(event.target.value);
+                }
+
+                const handleSubmit = (event) => {
+                    alert('선택한 과일: ' + value);
+                    event.preventDefault();
+                }
+
+                return (
+                    <form onSubmit={handleSubmit}>
+                        <label>
+                            과일을 선택하세요:
+                            <select value={value} onChange={handleChange}>
+                                <option value="apple">사과</option>
+                                <option value="banana">바나나</option>
+                                <option value="grape">포도</option>
+                                <option value="watermelon">수박</option>
+                            </select>
+                        </label>
+                        <button type="submit">제출</button>
+                    </form>
+                )
+            }
+        ex) <!-- 여러 개의 옵션 선택 가능! -->
+            <select multiple={true} value={['B', 'C']}>
+
+        ex) // input 태그
+            <input type="text" value={value} onChange={handleChange} />
+
+            // textarea 태그
+            <textarea value={value} onChange={handleChange} />
+
+            // select 태그
+            <select value={value} onChange={handleChange}>
+                <option value="apple">사과</option>
+                <option value="banana">바나나</option>
+                <option value="grape">포도</option>
+                <option value="watermelon">수박</option>
+            </select>
+
+    (5) File input 태그 : 하나 또는 여러개의 파일을 선택할 수 있게 해주는 html태그
+
+    (6) Multiple Inputs
+        ex) function Reservation(props) {
+                const [haveBreakfast, setHaveBreakfast] = useState(true);
+                const [numberOfGuest, setNumberOfGuest] = useState(2);
+
+                const handleSubmit = (event) => {
+                    alert(`아침식사 여부: ${haveBreakfast}, 방문객 수: ${numberOfGuest}`);
+                    event.preventDefault();
+                }
+
+                return (
+                    <form onSubmit={handleSubmit}>
+                        <label>
+                            아침식사 여부:
+                            <input
+                                type="checkbox"
+                                checked={haveBreakfast}
+                                onChange={(event) => {
+                                    setHaveBreakfast(evnet.target.cheched);
+                                }} />
+                        </label>
+                        <br />
+                        <label>
+                            방문객 수:
+                            <input
+                                type="number"
+                                value={numberOfGuest}
+                                onChange={(event) => {
+                                    setNumberOfGuest(event.target.value);
+                                }} />
+                        </label>
+                        <button type="submit">제출</button>
+                    </form>    
+                );
+            }
+
+    (7) Input Null Value
+        ex) ReactDOM.render(<input value="hi" />, rootNode);
+
+            setTimeout(function() {
+                ReactDOM.render(<input value={null} />, rootNode);
+            }, 1000);
 
 
-### ch13
+
+### 12. 섹션13
 Shared State : State에 있는 데이터를 여러개의 하위 컴포넌트에서 공통으로 사용하는 경우
 
 하위 컴포넌트에서 State공유하기
