@@ -1297,8 +1297,95 @@ npm uninstall react react-dom
                 );
             }
 
-            
+        ex) // 섭씨 <-> 화씨 온도 변환함수
+            function toCelsius(fahrenheit) {
+                return (fahrenheit - 32) * 5 / 9;
+            }
 
+            function toFahrenheit(celsius) {
+                return (celsius * 9 / 5) + 32;
+            }
+        
+        ex) // tryConvert 함수는 온도 값과 변환하는 함수를 파라미터로 받아서 값을 변환시켜 리턴
+            function tryConvert(temperature, convert) {
+                const input = parseFloat(temperature);
+                if (Number.isNaN(input)) {
+                    return '';
+                }
+                const output = convert(input);
+                const rounded = Math.round(output * 1000) / 1000;
+                return rounded.toString();
+            }
+
+        ex) tryConvert('abc', toCelsius);       // empty string을 리턴
+            tryConvert('10.22', toFahrengeit);  // '50.396'을 리턴
+        
+    (4) Shared State 적용하기 : lifting state up
+        ex) // TemperatureInput 컴포넌트에서 온도값을 가져오는 부분을 수정해야 함
+            // 온도값을 컴포넌트 상태에서가 아닌 props에서 가져오게 됨
+            return (
+                ...
+                    // 변경 전: <input value={temperature} onChange={handleChange} />
+                    <input value={props.temperature} onChange={handleChange} />
+                ...
+            )
+        
+        ex) // 온도값 변경때 props에 있는 onTemperatureChange 함수통해 변경된 온도값이 상위 컴포넌트로 전달됨
+            const handleChange = (event) => {
+                // 변경 전: setTemperature(event.target.value);
+                props.onTemperatureChange(event.target.value);
+            }
+
+        ex) // 최종적으로 완성된 TemperatureInput 컴포넌트
+            // state는 제거되었고, 오로지 상위 컴포넌트에서 제공된 값만을 받는다.
+            function TemperatureInput(props) {
+                const handleChange = (event) => {
+                    props.onTemperatureChange(event.target.value);
+                }
+
+                return (
+                    <fieldset>
+                        <legend>
+                            온도를 입력해 주세요(단위:{scaleNames[props.scale]});
+                    </legend>
+                        <input value={props.temperature} onChange={handleChange} />
+                    </fieldset>
+                )
+            }
+
+    (5) Calculator 컴포넌트 변경하기
+        ex) function Calculator(props) {
+                const [temperature, setTemperature] = useState('');
+                const [scale, setScale] = useState('c');
+
+                const handleCelsiusChange = (temperature) => {
+                    setTemperature(temperature);
+                    setScale('c');
+                }
+
+                const handleFahrengeitChange = (temperature) => {
+                    setTemperature(temperature);
+                    setScale('f');
+                }
+
+                const celsius = scale === 'f' ? tryConvert(temperature, toCelsius) : temperature;
+                const fahrenheit = scale === 'c' ? tryConvert(temperature, toFahrenheit) : temperature;
+
+                return (
+                    <div>
+                        <TemperatureInput
+                            scale="c"
+                            temperature={celsius}
+                            onTemperatureChange={handleCelsiusChange} />
+                        <TemperatureInput
+                            scale="f"
+                            temperature={fahrenheit}
+                            onTemperatureChange={handleFahrengeitChange} />
+                        <BoilingVerdict
+                            celsius={parseFloat(celsius)} />
+                    </div>
+                );
+            }
 
 
 ### ch14
