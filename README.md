@@ -1233,9 +1233,71 @@ npm uninstall react react-dom
 
 
 ### 12. 섹션13
-Shared State : State에 있는 데이터를 여러개의 하위 컴포넌트에서 공통으로 사용하는 경우
+    (1) Shared State : 공유된 상태
+        - State에 있는 데이터를 여러개의 하위 컴포넌트에서 공통으로 사용하는 경우
+        - 하위 컴포넌트가 공통된 부모 컴포넌트의 state를 공유하여 사용하는 것
+    (2) 하위 컴포넌트에서 State공유하기
+        ex) //물의 끓음 여부를 알려주는 컴포넌트
+            function BoilingVerdict(props) {
+                if(props.celsius >= 100) {
+                    return <p>물이 끓습니다.</p>;
+                }
+                return <p>물이 끓지 않습니다.</p>;
+            }
 
-하위 컴포넌트에서 State공유하기
+        ex) function Calculator(props) {
+                const [temperature, setTemperature] = useState('');
+
+                const handleChange = (event) => {
+                    setTemperature(event.target.value);
+                }
+
+                return (
+                    <fieldset>
+                        <legend>섭씨 온도를 입력하세요:</legend>
+                        <input
+                            value={temperature}
+                            onChange={handleChange} />
+                        <BoilingVerdict
+                            celsius={parseFloat(temperature)} />
+                    </fieldset>
+                )
+            }
+
+    (3) 입력 컴포넌트 추출하기
+        ex) const scaleNames = {
+                c: '섭씨',
+                f: '화씨'
+            };
+
+            function TemperatureInput(props) {
+                const [temperature, setTemperature] = useState('');
+
+                const handleChange = (event) => {
+                    setTemperature(event.target.value);
+                }
+
+                return (
+                    <fieldset>
+                        <legend>
+                            온도를 입력해 주세요(단위:{scaleNames[props.scale]});
+                        </legend>
+                        <input value={temperature} onChange={handleChange} />
+                    <fieldset>
+                )
+            }
+
+        ex) // 위 추출한 컴포넌트를 사용하도록 Calculator 컴포넌트를 변경
+            function Calculator(props) {
+                return (
+                    <div>
+                        <TemperatureInput scale="c" />
+                        <TemperatureInput scale="f" />
+                    </div>
+                );
+            }
+
+            
 
 
 
