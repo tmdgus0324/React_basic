@@ -1,5 +1,5 @@
 import React from "react";
-/*
+
 function Book(props) {
     return (
         <div>
@@ -8,9 +8,10 @@ function Book(props) {
         </div>
     );
 }
-*/
+
 
 // JSX를 사용하지 않고 작성한 React Component코드
+/*
 function Book(props){
     return React.createElement(
         'div',
@@ -29,5 +30,6 @@ function Book(props){
         ]
     )
 }
+*/
 
 export default Book;

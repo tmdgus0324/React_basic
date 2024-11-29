@@ -23,15 +23,16 @@ import Blocks from './chapter_15/Blocks';
 
 
 /* chapter 3 */
-
+/*
 ReactDOM.render(
   <React.StrictMode>
     <Library />
   </React.StrictMode>,
   document.getElementById('root')
 );
-
+*/
 /*
+// React 18버전에서 사용
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
@@ -42,6 +43,16 @@ root.render(
 */
 
 /* chapter 4 */ 
+
+setInterval(() => {
+  ReactDOM.render(
+    <React.StrictMode>
+      <Clock />
+    </React.StrictMode>,
+    document.getElementById('root')
+  );
+}, 1000);
+
 /*
 const root = ReactDOM.createRoot(document.getElementById('root'));
 

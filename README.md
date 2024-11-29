@@ -198,6 +198,7 @@ npm uninstall react react-dom
                     <h2>열심히 리액트를 공부해 봅시다.</h2>
                 </div>
             );
+            
 ### 4. 섹션5   
     (1) Element : React 앱을 구성하는 가장 작은 블록들
 
