@@ -43,7 +43,7 @@ root.render(
 */
 
 /* chapter 4 */ 
-
+/*
 setInterval(() => {
   ReactDOM.render(
     <React.StrictMode>
@@ -52,7 +52,7 @@ setInterval(() => {
     document.getElementById('root')
   );
 }, 1000);
-
+*/
 /*
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -77,14 +77,14 @@ ReactDOM.render(
 */
 
 /* chapter 6 -> 17버전으로 다운 */ 
-/*
+
 ReactDOM.render(
   <React.StrictMode>
     <NotificationList />
   </React.StrictMode>,
   document.getElementById('root')
 );
-*/
+
 
 /* chapter 7 */
 /*
