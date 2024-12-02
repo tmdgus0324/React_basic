@@ -77,24 +77,24 @@ ReactDOM.render(
 */
 
 /* chapter 6 -> 17버전으로 다운 */ 
-
+/*
 ReactDOM.render(
   <React.StrictMode>
     <NotificationList />
   </React.StrictMode>,
   document.getElementById('root')
 );
-
+*/
 
 /* chapter 7 */
-/*
+
 ReactDOM.render(
   <React.StrictMode>
     <Accommodate />
   </React.StrictMode>,
   document.getElementById('root')
 );
-*/
+
 
 /* chapter 8 */
 /*

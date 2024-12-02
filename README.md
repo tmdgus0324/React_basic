@@ -198,7 +198,7 @@ npm uninstall react react-dom
                     <h2>열심히 리액트를 공부해 봅시다.</h2>
                 </div>
             );
-            
+
 ### 4. 섹션5   
     (1) Element : React 앱을 구성하는 가장 작은 블록들
 
@@ -366,8 +366,6 @@ npm uninstall react react-dom
                            React updates DOM and refs
         componentDidMount    >       componentDidUpdate    >      componentDidUnmount
         > Component가 계속 존재하는 것이 아닌, 시간의 흐름에 따라 생성되고 업데이트 되다가 사라진다.    
-
-
 
 ### 7. 섹션8
     (1) hooks
