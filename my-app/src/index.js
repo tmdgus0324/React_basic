@@ -87,24 +87,24 @@ ReactDOM.render(
 */
 
 /* chapter 7 */
-
+/*
 ReactDOM.render(
   <React.StrictMode>
     <Accommodate />
   </React.StrictMode>,
   document.getElementById('root')
 );
-
+*/
 
 /* chapter 8 */
-/*
+
 ReactDOM.render(
   <React.StrictMode>
     <ConfirmButton2 />
   </React.StrictMode>,
   document.getElementById('root')
 );
-*/
+
 
 /* chapter 9 */
 /*

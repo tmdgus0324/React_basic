@@ -368,7 +368,7 @@ npm uninstall react react-dom
         > Component가 계속 존재하는 것이 아닌, 시간의 흐름에 따라 생성되고 업데이트 되다가 사라진다.    
 
 ### 7. 섹션8
-    (1) hooks
+    (1) Hooks
         - Function Component : state 사용불가, Lifecycle에 따른 기능 구현 불가
           > Hooks를 사용하여 Class Component처럼 사용가능
 
@@ -389,6 +389,7 @@ npm uninstall react react-dom
             }
 
           > const [변수명, set함수명] = useState(초기값);
+          
         ex) import React, { useState } from "react";
             // 변수 각각에 대해 set합수가 따로 존재!
             function Counter(props) {
