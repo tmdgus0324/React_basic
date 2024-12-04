@@ -12,22 +12,22 @@ class ConfirmButton extends React.Component {
     }
 
     // (1) 이벤트 핸들러 -> bind사용하는 방식
-    
+    /*
     handleConfirm() {
         this.setState((prevState) => ({
             isConfirmed: !prevState.isConfirmed,
         }));
     }
-    
+    */
 
     // (2) Arrow function 으로 변경
-    /*
+    
     handleConfirm = () => {
         this.setState((prevState) => ({
             isConfirmed: !prevState.isConfirmed,
         }));
     }
-    */
+    
 
     render() {
         return (
