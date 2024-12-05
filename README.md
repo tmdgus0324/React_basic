@@ -372,7 +372,7 @@ npm uninstall react react-dom
         - Function Component : state 사용불가, Lifecycle에 따른 기능 구현 불가
           > Hooks를 사용하여 Class Component처럼 사용가능, 16.8 이후 도입됨
         - useState, useEffect, useContext, useReducer, useRef, useMemo, useCallback
-        
+
         - 특징 : 클래스형 컴포넌트를 대체, 관련 로직을 작은 단위로 분리하여 재사용성과 가독성을 향상
                 Hook은 컴포넌트의 최상위 레벨에서만 호출, 조건문 안에서는 사용할 수 없음
 
@@ -392,8 +392,7 @@ npm uninstall react react-dom
                 );
             }
 
-          > const [변수명, set함수명] = useState(초기값);
-
+        - useState(); :  const [변수명, set함수명] = useState(초기값);
         ex) import React, { useState } from "react";
             // 변수 각각에 대해 set합수가 따로 존재!
             function Counter(props) {

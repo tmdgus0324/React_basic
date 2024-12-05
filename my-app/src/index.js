@@ -97,24 +97,24 @@ ReactDOM.render(
 */
 
 /* chapter 8 */
-
+/*
 ReactDOM.render(
   <React.StrictMode>
     <ConfirmButton2 />
   </React.StrictMode>,
   document.getElementById('root')
 );
-
+*/
 
 /* chapter 9 */
-/*
+
 ReactDOM.render(
   <React.StrictMode>
     <LandingPage />
   </React.StrictMode>,
   document.getElementById('root')
 );
-*/
+
 
 /* chapter 10 */
 /*
